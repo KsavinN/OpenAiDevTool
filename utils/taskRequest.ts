@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 const apiURL = 'https://zadania.aidevs.pl/';
-const apiKey = process.env.AIDEV_KEY
 
 function getResponseData(response: any, taskError = '') {
   if (response.status === 200 && response.data.code === 0)
@@ -10,7 +9,10 @@ function getResponseData(response: any, taskError = '') {
 }
 
 async function getTokenAuthorization(taskName: string) {
-  const response = await axios.post(`${apiURL}token/${taskName}`, { "apikey": apiKey });
+  if(!process.env.AIDEV_KEY) {
+    throw Error('No API KEY')
+  }
+  const response = await axios.post(`${apiURL}token/${taskName}`, { "apikey": process.env.AIDEV_KEY });
   const data = getResponseData(response)
   return data.token;
 }
