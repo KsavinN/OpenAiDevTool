@@ -7,17 +7,23 @@
     "start": "npx ts-node index.ts",
     "read": "npm start read",
     "resolve": "npm start resolve",
+    "updateDB": "npm start updateDB",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@pinecone-database/pinecone": "^2.0.1",
     "axios": "^1.4.0",
-    "dotenv": "^16.0.3"
+    "dotenv": "^16.0.3",
+    "form-data": "^4.0.0",
+    "puppeteer": "^21.10.0",
+    "uuid4": "^2.0.3"
   },
   "devDependencies": {
     "@types/node": "^18.16.7",
+    "@types/uuid4": "^2.0.3",
     "@typescript-eslint/eslint-plugin": "^5.59.5",
     "@typescript-eslint/parser": "^5.59.5",
     "eslint": "^8.40.0",

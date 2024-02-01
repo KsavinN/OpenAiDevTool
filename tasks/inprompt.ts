@@ -1,10 +1,10 @@
-import { Message, sendtToChatGPT } from "../utils/openai";
+import { Message, simpleSendToChatGPT } from "../utils/openai";
 import { resolveTask } from "../utils/resolveTask";
 
 
 export async function InpromptTask() {
     await resolveTask('inprompt', async (taskInput) => {
-      const askName = await sendtToChatGPT({ prompt: `Return only name from sentence, names are polish: ${taskInput.question}` });
+      const askName = await simpleSendToChatGPT({ prompt: `Return only name from sentence, names are polish: ${taskInput.question}` });
       const name = askName.content.replace('.','');
       const text = taskInput.input.filter( (item:string) => item.includes(name)).join('/')
       const messages: Message[] = [{ role: 'user', content: `Answer question: ${taskInput.question} using {{context}}
@@ -13,7 +13,7 @@ export async function InpromptTask() {
       {{/context}}
       ` },
     ];
-      const input = await sendtToChatGPT({ messages });
+      const input = await simpleSendToChatGPT({ messages });
       return input.content;
     });
 }

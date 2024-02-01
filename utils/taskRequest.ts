@@ -23,6 +23,13 @@ async function getTask(token: string) {
   return data
 }
 
+async function sendQuestion(token: string, question: string) {
+  const response = await axios.post(`${apiURL}task/${token}`, {question}, {
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+} );
+  return response.data.answer;
+}
+
 async function sendAnswer(token: string, answer: any) {
   const response = await axios.post(`${apiURL}answer/${token}`, { answer });
   return response.data;
@@ -31,5 +38,6 @@ async function sendAnswer(token: string, answer: any) {
 export {
   getTokenAuthorization,
   getTask,
-  sendAnswer
+  sendAnswer,
+  sendQuestion
 }
