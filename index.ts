@@ -23,7 +23,7 @@ type ActionTask = typeof ActionTask[number];
 const Actions = [...ActionTask, 'updateDB'] as const;
 type Actions = ActionTask | 'updateDB';
 
-export const Task = ['helloapi', 'moderation', 'inprompt', 'blogger', 'liar', 'embedding', 'whisper', "functions", "rodo", 'scraper', 'whoami', "search", "people", "knowledge", "tools","gnome","ownapi", "meme"] as const;
+export const Task = ['helloapi', 'moderation', 'inprompt', 'blogger', 'liar', 'embedding', 'whisper', "functions", "rodo", 'scraper', 'whoami', "search", "people", "knowledge", "tools", "gnome", "ownapi", "meme"] as const;
 export type Task = typeof Task[number];
 
 
@@ -77,7 +77,9 @@ const callAction = async (action: ActionTask | 'updateDB', nameOfTask: Task | st
         console.warn('Wrong Action in call Action');
     }
   } else {
-    console.error('Wrong task', nameOfTask)
+    console.error('Wrong task:', nameOfTask);
+    console.error('Available tasks:');
+    console.error(Task.join('\n'));
   }
 }
 async function main() {
